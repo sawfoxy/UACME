@@ -1,22 +1,22 @@
 name: Build UACME
 on:
-  workflow_dispatch: # Permite ejecutarlo manualmente
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: windows-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Setup MSBuild
-      uses: microsoft/setup-msbuild@v1.1
+      uses: microsoft/setup-msbuild@v2
 
     - name: Build UACME (x64)
       run: msbuild Source/uacme.sln /p:Configuration=Release /p:Platform=x64
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: UACME-Compiled
-        path: Source/Akagi/output/ # Ajusta esta ruta si los binarios caen en la carpeta principal 'Bin'
+        path: Source/Akagi/output/
